@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import se331.rest.entity.Doctor;
 import se331.rest.repository.DoctorRepository;
-@Profile("db")
+
 @Repository
 public class DoctorDaoImpl implements DoctorDao{
     @Autowired

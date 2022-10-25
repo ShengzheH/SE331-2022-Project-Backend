@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface DoctorRepository extends JpaRepository<Doctor,Long> {
     List<Doctor> findAll();
-    Page<Doctor> find(Pageable pageRequest);
+    Page<Doctor> findByName(String name,Pageable pageRequest);
 }

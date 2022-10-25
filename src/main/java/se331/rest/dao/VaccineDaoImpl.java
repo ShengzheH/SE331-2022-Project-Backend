@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import se331.rest.entity.Vaccine;
 import se331.rest.repository.VaccineRepository;
-@Profile("db")
+
 @Repository
 public class VaccineDaoImpl implements VaccineDao{
     @Autowired

@@ -24,6 +24,7 @@ public class Doctor {
     List<String> imageUrl;
 
     @OneToMany
+    @Builder.Default
     List<Patient> patients = new ArrayList<>();
 
     @OneToMany

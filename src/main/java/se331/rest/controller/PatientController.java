@@ -17,7 +17,7 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @GetMapping("patients")
+    @GetMapping("/patients")
     public ResponseEntity<?> getPatientLists(@RequestParam(value = "_limit",required = false) Integer perPage
     ,@RequestParam(value = "_page", required = false) Integer page
             , @RequestParam(value = "title", required = false) String keyword){

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import se331.rest.entity.Patient;
 import se331.rest.repository.PatientRepository;
 
-@Profile("db")
+
 @Repository
 public class PatientDaoImpl implements PatientDao{
     @Autowired

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import se331.rest.entity.Comment;
 import se331.rest.repository.CommentRepository;
-@Profile("db")
+
 @Repository
 public class CommentDaoImpl implements CommentDao{
     @Autowired
