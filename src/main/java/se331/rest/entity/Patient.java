@@ -31,5 +31,6 @@ public class Patient {
     Doctor doctor;
 
     @OneToMany
+    @Builder.Default
     List<Comment> comments = new ArrayList<>();
 }

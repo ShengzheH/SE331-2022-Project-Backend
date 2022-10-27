@@ -55,15 +55,16 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         v1 = vaccineRepository.save(Vaccine.builder()
                 .firstdose_name("dose1")
                 .firstdose_time("2022-04-12")
-                .vaccined_status("first dose")
+                .vaccined_status("FirstDose")
                 .patient(p1).build());
         v2 = vaccineRepository.save(Vaccine.builder()
-                .firstdose_name("dose1")
-                .firstdose_time("2022-04-12")
-                .seconddose_name("dose2")
-                .seconddose_time("2022-05-12")
-                .vaccined_status("second dose")
-                .patient(p2).build());
+//                .firstdose_name("dose1")
+//                .firstdose_time("2022-04-12")
+//                .seconddose_name("dose2")
+//                .seconddose_time("2022-05-12")
+                .vaccined_status("Not Vaccinated")
+                .patient(p2)
+                .build());
 //        patientRepository.AddVaccine(v1.getId(),p1.getId());
 //        patientRepository.AddVaccine(v2.getId(),p2.getId());
         p1.setVaccineinfo(v1);

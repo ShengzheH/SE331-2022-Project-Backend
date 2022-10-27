@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se331.rest.dao.VaccineDao;
 import se331.rest.entity.Vaccine;
+
+import java.util.List;
+
 @Service
 public class VaccineServiceImpl implements VaccineService{
     @Autowired
@@ -19,7 +22,13 @@ public class VaccineServiceImpl implements VaccineService{
     }
 
     @Override
-    public Vaccine save(Vaccine vaccine) {
-        return vaccineDao.save(vaccine);
+    public List<Vaccine> getVaccines() {
+        return vaccineDao.getVaccines();
+    }
+
+
+    @Override
+    public Vaccine save(Vaccine vaccine,Long id) {
+        return vaccineDao.save(vaccine,id);
     }
 }

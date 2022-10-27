@@ -28,6 +28,7 @@ public class Doctor {
     List<Patient> patients = new ArrayList<>();
 
     @OneToMany
+    @Builder.Default
     List<Comment> comments = new ArrayList<>();
 
 }

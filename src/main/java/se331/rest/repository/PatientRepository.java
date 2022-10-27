@@ -17,5 +17,8 @@ public interface PatientRepository extends JpaRepository<Patient,Long> {
     @Transactional
     @Query(value = "update patient set vaccineinfo_id = ?1 where id = ?2",nativeQuery = true)
     void AddVaccine(Long vaccineinfo_id,Long id);
-    Page<Event> findByName(String name,Pageable pageRequest);
+
+
+    @Query("select  p from Patient p where p.vaccineinfo.vaccined_status <> ?1")
+    Page<Patient> findAllByVaccineinfo_Vaccined_statusNot(String a,Pageable pageRequest);
 }
