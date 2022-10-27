@@ -32,4 +32,11 @@ public class PatientDaoImpl implements PatientDao{
     public Patient save(Patient patient) {
         return patientRepository.save(patient);
     }
+
+
+
+    @Override
+    public Page<Patient> getPatientsVaccineNot(String NotVaccinated,Integer pageSize, Integer page) {
+        return patientRepository.findAllByVaccineinfo_Vaccined_statusNot(NotVaccinated,PageRequest.of(page-1,pageSize));
+    }
 }

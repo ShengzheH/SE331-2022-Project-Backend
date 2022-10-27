@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se331.rest.dao.CommentDao;
 import se331.rest.entity.Comment;
+
+import java.util.List;
+
 @Service
 public class CommentServiceImpl implements CommentService{
     @Autowired
@@ -19,7 +22,12 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public Comment save(Comment comment) {
-        return commentDao.save(comment);
+    public List<Comment> getComments() {
+        return commentDao.getComments();
+    }
+
+    @Override
+    public Comment save(Comment comment,Long did,Long pid) {
+        return commentDao.save(comment,did,pid);
     }
 }

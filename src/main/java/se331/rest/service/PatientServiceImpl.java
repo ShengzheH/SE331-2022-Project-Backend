@@ -20,6 +20,11 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
+    public Page<Patient> getPatientsVaccineNot(String NotVaccinated, Integer pageSize, Integer page) {
+        return patientDao.getPatientsVaccineNot(NotVaccinated, pageSize, page);
+    }
+
+    @Override
     public Patient getPatient(Long id) {
         return patientDao.getPatient(id);
     }

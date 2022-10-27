@@ -164,7 +164,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .vaccined_status("SecondDose")
                 .patient(p3).build());
         v4 = vaccineRepository.save(Vaccine.builder()
-                .vaccined_status("Not vaccinated")
+                .vaccined_status("Not Vaccinated")
                 .patient(p4).build());
         v5 = vaccineRepository.save(Vaccine.builder()
                 .firstdose_name("inactivated vaccine")

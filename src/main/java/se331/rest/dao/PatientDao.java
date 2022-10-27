@@ -8,5 +8,5 @@ public interface PatientDao {
     Page<Patient> getPatients(Integer pageSize,Integer page);
     Patient getPatient(Long id);
     Patient save(Patient patient);
-//    Page<Patient> getPatients(String)
+    Page<Patient> getPatientsVaccineNot(String NotVaccinated,Integer pageSize, Integer page);
 }
