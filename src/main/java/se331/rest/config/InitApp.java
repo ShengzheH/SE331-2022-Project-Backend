@@ -84,7 +84,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .sur_name("Ren")
                 .age("19")
                 .hometown("Ningxia_China")
-                .doctor(dor2)
+//                .doctor(dor2)
                 .build());
         p5 = patientRepository.save(Patient.builder()
                 .name("Yifan")
@@ -344,7 +344,7 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         dor1.getPatients().add(p1);
         dor1.getPatients().add(p2);
         dor1.getPatients().add(p3);
-        dor2.getPatients().add(p4);
+//        dor2.getPatients().add(p4);
         dor2.getPatients().add(p5);
         dor2.getPatients().add(p6);
         dor3.getPatients().add(p7);

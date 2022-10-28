@@ -28,7 +28,7 @@ public class VaccineServiceImpl implements VaccineService{
 
 
     @Override
-    public Vaccine save(Vaccine vaccine,Long id) {
-        return vaccineDao.save(vaccine,id);
+    public Vaccine save(Vaccine vaccine,Long pid,Long did) {
+        return vaccineDao.save(vaccine,pid,did);
     }
 }

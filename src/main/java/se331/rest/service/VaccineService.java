@@ -8,5 +8,5 @@ public interface VaccineService {
     Integer getVaccineSize();
     Vaccine getVaccine(Long id);
     List<Vaccine> getVaccines();
-    Vaccine save(Vaccine vaccine,Long id);
+    Vaccine save(Vaccine vaccine,Long id,Long did);
 }
