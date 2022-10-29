@@ -31,8 +31,8 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     public void onApplicationEvent(ApplicationReadyEvent event) {
         Doctor dor1;
         dor1 = doctorRepository.save(Doctor.builder()
-                .name("dor1name")
-                .sur_name("dor1surname")
+                .name("Si")
+                .sur_name("Li")
                 .age("40")
                 .hometown("DC")
                 .build());
