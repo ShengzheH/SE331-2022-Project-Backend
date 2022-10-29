@@ -8,5 +8,5 @@ public interface VaccineDao {
     Integer getVaccineSize();
     Vaccine getVaccine(Long id);
     List<Vaccine> getVaccines();
-    Vaccine save(Vaccine vaccinem,Long id);
+    Vaccine save(Vaccine vaccinem,Long pid,Long did);
 }

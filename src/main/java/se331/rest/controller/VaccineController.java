@@ -32,8 +32,8 @@ public class VaccineController {
     }
 
     @PostMapping("/vaccine")
-    public ResponseEntity<?> addVaccine(@RequestBody Vaccine vaccine,@RequestParam(value = "pid",required = false)Long id){
-        Vaccine output = vaccineService.save(vaccine,id);
+    public ResponseEntity<?> addVaccine(@RequestBody Vaccine vaccine,@RequestParam(value = "pid",required = false)Long pid,@RequestParam(value = "did",required = false)Long did){
+        Vaccine output = vaccineService.save(vaccine,pid,did);
         return ResponseEntity.ok(LabMapper.INSTANCE.getVaccineDTO(output));
     }
 }
