@@ -12,6 +12,8 @@ import se331.rest.entity.Patient;
 import se331.rest.service.PatientService;
 import se331.rest.util.LabMapper;
 
+import java.util.List;
+
 @Controller
 public class PatientController {
     @Autowired
@@ -58,5 +60,9 @@ public class PatientController {
     public ResponseEntity<?> addPatient(@RequestBody Patient patient){
         Patient output = patientService.save(patient);
         return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(output));
+    }
+    @PostMapping("/patientimage")
+    public ResponseEntity<?> changeimage(@RequestBody Patient patient){
+        return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(patientService.save(patient)));
     }
 }

@@ -13,6 +13,9 @@ import se331.rest.entity.Patient;
 import se331.rest.service.DoctorService;
 import se331.rest.util.LabMapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class DoctorController {
 
@@ -37,6 +40,16 @@ public class DoctorController {
         Doctor output = doctorService.getDoctor(id);
         if (output != null)
             return ResponseEntity.ok(LabMapper.INSTANCE.getDoctorDTO(output));
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
+    }
+    @GetMapping("doctorpatient/{id}")
+    public ResponseEntity<?> getDoctorPatient(@PathVariable("id")Long id){
+        Doctor output = doctorService.getDoctor(id);
+        List<Patient> patientList = new ArrayList<>();
+        patientList = output.getPatients();
+        if (output != null)
+            return ResponseEntity.ok(LabMapper.INSTANCE.getPatientDTO(patientList));
         else
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"The given id is not found");
     }
