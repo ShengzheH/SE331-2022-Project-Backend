@@ -3,6 +3,8 @@ package se331.rest.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import se331.rest.entity.Comment;
 import se331.rest.entity.Doctor;
@@ -12,8 +14,16 @@ import se331.rest.repository.CommentRepository;
 import se331.rest.repository.DoctorRepository;
 import se331.rest.repository.PatientRepository;
 import se331.rest.repository.VaccineRepository;
+import se331.rest.security.entity.Authority;
+import se331.rest.security.entity.AuthorityName;
+import se331.rest.security.entity.User;
+import se331.rest.security.repository.AuthorityRepository;
+import se331.rest.security.repository.UserRepository;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -27,9 +37,16 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
     @Autowired
     CommentRepository commentRepository;
 
+    @Autowired
+    AuthorityRepository authorityRepository;
+    @Autowired
+    UserRepository userRepository;
+    User user1 = new User();
+    User user2 = new User();
+    User user3 = new User();
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        Doctor dor1;
+        Doctor dor1 = new Doctor();
         dor1 = doctorRepository.save(Doctor.builder()
                 .name("Si")
                 .sur_name("Li")
@@ -58,12 +75,15 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
                 .hometown("Shanghai")
                 .build());
         Patient p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12;
+        List<String> p1image = new ArrayList<>();
+        p1image.add(new String("https://storage.googleapis.com/download/storage/v1/b/projectimageupload-96213.appspot.com/o/2022-10-30%20140520215-1.jpg?generation=1667109925717140&alt=media"));
         p1 = patientRepository.save(Patient.builder()
                 .name("Shengzhe")
                 .sur_name("Huang")
                 .age("20")
                 .hometown("Zhejiang_China")
                 .doctor(dor1)
+                .imageUrl(p1image)
                 .build());
         p2 = patientRepository.save(Patient.builder()
                 .name("Haolong")
@@ -371,5 +391,62 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         doctorRepository.save(dor2);
         doctorRepository.save(dor3);
         doctorRepository.save(dor4);
+
+
+        addUser();
+        dor1.setUser(user1);
+        user1.setDoctor(dor1);
+        p1.setUser(user2);
+        user2.setPatient(p1);
+        userRepository.save(user1);
+        userRepository.save(user2);
+        doctorRepository.AddUser(user1.getId(),dor1.getId());
+        patientRepository.AddUser(user2.getId(),p1.getId());
+//        patientRepository.save(p1);
+    }
+
+    private void addUser(){
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
+        Authority authAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
+        user1 = User.builder()
+                .username ( "admin")
+                .password ( encoder.encode ( "admin" ) )
+                .firstname ( "admin" )
+                .lastname ( "admin")
+                .email ( "admin@admin.com" ).enabled (true)
+                .lastPasswordResetDate(Date.from(LocalDate.of (2021,01,
+                        01).atStartOfDay(ZoneId.systemDefault ()).toInstant()))
+                .build();
+
+
+        user2 = User.builder()
+                .username ( "user")
+                .password ( encoder.encode ( "user" ) )
+                .firstname ( "user" )
+                .lastname ( "user")
+                .email ( "enabled@user.com" ).enabled (true)
+                .lastPasswordResetDate(Date.from(LocalDate.of (2021,01,
+                        01).atStartOfDay(ZoneId.systemDefault ()).toInstant()))
+                .build();
+
+        user3 = User.builder()
+                .username ( "disableUser")
+                .password ( encoder.encode ( "disableUser" ) )
+                .firstname ( "disableUser" )
+                .lastname ( "disableUser")
+                .email ( "disableUser@user.com" ).enabled (true)
+                .lastPasswordResetDate(Date.from(LocalDate.of (2021,01,
+                        01).atStartOfDay(ZoneId.systemDefault ()).toInstant()))
+                .build();
+        authorityRepository.save(authUser);
+        authorityRepository.save(authAdmin);
+        user1.getAuthorities().add(authUser);
+        user1.getAuthorities().add(authAdmin);
+        user2.getAuthorities().add(authUser);
+        user3.getAuthorities().add(authUser);
+        userRepository.save(user1);
+        userRepository.save(user2);
+        userRepository.save(user3);
     }
 }

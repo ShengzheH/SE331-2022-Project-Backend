@@ -48,9 +48,13 @@ public class WebSecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .authorizeRequests()
                 .antMatchers("/auth/**",  "/refresh").permitAll()
-                .antMatchers(HttpMethod.GET,"/event").permitAll()
+                .antMatchers(HttpMethod.GET,"/patient*").permitAll()
+                .antMatchers(HttpMethod.GET,"/patient/*").permitAll()
+                .antMatchers(HttpMethod.GET,"/doctor*").permitAll()
+                .antMatchers(HttpMethod.GET,"/doctor/*").permitAll()
+                .antMatchers(HttpMethod.GET,"/vaccine*").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers(HttpMethod.POST,"/event").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.POST,"/event").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
@@ -60,11 +64,11 @@ public class WebSecurityConfig {
 
 
 
-    @Bean
-    ServerHttpSecurity serverHttpSecurity() {
-
-        return ServerHttpSecurity.http();
-    }
+//    @Bean
+//    ServerHttpSecurity serverHttpSecurity() {
+//
+//        return ServerHttpSecurity.http();
+//    }
 
 
 

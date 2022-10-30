@@ -11,7 +11,8 @@ import javax.annotation.PostConstruct;
 import java.util.Date;
 import java.util.TimeZone;
 
-@SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
+//@SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
+@SpringBootApplication
 public class ProjectApplication {
 	@PostConstruct
 	public void init(){
