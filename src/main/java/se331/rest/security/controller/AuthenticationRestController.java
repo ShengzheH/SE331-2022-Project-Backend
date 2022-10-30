@@ -200,8 +200,10 @@ public class AuthenticationRestController {
             Vaccine vaccine = vaccineRepository.save(Vaccine.builder()
                     .vaccined_status("Not Vaccinated")
                     .patient(patient).build());
-            Vaccine vaccine1 = vaccine;
-            patient.setVaccineinfo(vaccine);
+            Vaccine vaccine1 = new Vaccine();
+            vaccine1.setVaccined_status(vaccine.getVaccined_status());
+            vaccine1.setId(vaccine.getId());
+            patient.setVaccineinfo(vaccine1);
             auth = authorityRepository.findByName(AuthorityName.ROLE_PATIENT);
             users = authorityRepository.findByName(AuthorityName.ROLE_PATIENT).getUsers();
 
