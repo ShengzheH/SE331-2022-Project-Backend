@@ -17,11 +17,11 @@ public class ProjectApplication {
 	@PostConstruct
 	public void init(){
 //		TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
-        System.out.println("Spring boot application running in GMT timezone :"+new Date());
-        System.setProperty("proxyType", "4"); // 设置代理类型，4应该是指http
-        System.setProperty("proxyPort","11000"); // 设置代理的端口号
-        System.setProperty("proxyHost", "127.0.0.1"); // 设置代理的ip地址
-        System.setProperty("proxySet", "true"); // 使代理生效
+//        System.out.println("Spring boot application running in GMT timezone :"+new Date());
+//        System.setProperty("proxyType", "4"); // 设置代理类型，4应该是指http
+//        System.setProperty("proxyPort","11000"); // 设置代理的端口号
+//        System.setProperty("proxyHost", "127.0.0.1"); // 设置代理的ip地址
+//        System.setProperty("proxySet", "true"); // 使代理生效
 	}
 
 	public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class ProjectApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:3000","http://localhost:4000","http://192.168.31.209:4000")
+						.allowedOrigins("http://localhost:3000","http://localhost:4000","http://52.91.186.96:4000")
 						.exposedHeaders("x-total-count");
 
 			}
