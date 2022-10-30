@@ -2,6 +2,8 @@ package se331.rest.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import se331.rest.entity.Doctor;
 import se331.rest.entity.Patient;
@@ -32,8 +34,8 @@ public class VaccineDaoImpl implements VaccineDao{
     }
 
     @Override
-    public List<Vaccine> getVaccines() {
-        return vaccineRepository.findAll();
+    public Page<Vaccine> getVaccines(Integer pageSize, Integer page) {
+        return vaccineRepository.findAll(PageRequest.of(page-1,pageSize));
     }
 
     @Override
