@@ -424,18 +424,28 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         addUser();
         dor1.setUser(user1);
         user1.setDoctor(dor1);
-        p1.setUser(user2);
-        user2.setPatient(p1);
+
+        dor2.setUser(user2);
+        user2.setDoctor(dor2);
+
+        p1.setUser(user3);
+        user3.setPatient(p1);
+
         userRepository.save(user1);
         userRepository.save(user2);
+        userRepository.save(user3);
+
         doctorRepository.AddUser(user1.getId(),dor1.getId());
-        patientRepository.AddUser(user2.getId(),p1.getId());
+
+        doctorRepository.AddUser(user2.getId(),dor2.getId());
+        patientRepository.AddUser(user3.getId(),p1.getId());
 //        patientRepository.save(p1);
     }
 
     private void addUser(){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
-        Authority authUser = Authority.builder().name(AuthorityName.ROLE_USER).build();
+        Authority authDoctor = Authority.builder().name(AuthorityName.ROLE_DOCTOR).build();
+        Authority authPatient = Authority.builder().name(AuthorityName.ROLE_PATIENT).build();
         Authority authAdmin = Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
         user1 = User.builder()
                 .username ( "admin")
@@ -449,30 +459,32 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
 
 
         user2 = User.builder()
-                .username ( "user")
-                .password ( encoder.encode ( "user" ) )
-                .firstname ( "user" )
-                .lastname ( "user")
-                .email ( "enabled@user.com" ).enabled (true)
+                .username ( "doctor")
+                .password ( encoder.encode ( "doctor" ) )
+                .firstname ( "doctor" )
+                .lastname ( "doctor")
+                .email ( "enabled@doctor.com" ).enabled (true)
                 .lastPasswordResetDate(Date.from(LocalDate.of (2021,01,
                         01).atStartOfDay(ZoneId.systemDefault ()).toInstant()))
                 .build();
 
         user3 = User.builder()
-                .username ( "disableUser")
-                .password ( encoder.encode ( "disableUser" ) )
-                .firstname ( "disableUser" )
-                .lastname ( "disableUser")
-                .email ( "disableUser@user.com" ).enabled (true)
+                .username ( "patient")
+                .password ( encoder.encode ( "patient" ) )
+                .firstname ( "patient" )
+                .lastname ( "patient")
+                .email ( "enableUser@patient.com" ).enabled (true)
                 .lastPasswordResetDate(Date.from(LocalDate.of (2021,01,
                         01).atStartOfDay(ZoneId.systemDefault ()).toInstant()))
                 .build();
-        authorityRepository.save(authUser);
         authorityRepository.save(authAdmin);
-        user1.getAuthorities().add(authUser);
+        authorityRepository.save(authDoctor);
+        authorityRepository.save(authPatient);
         user1.getAuthorities().add(authAdmin);
-        user2.getAuthorities().add(authUser);
-        user3.getAuthorities().add(authUser);
+        user1.getAuthorities().add(authDoctor);
+        user1.getAuthorities().add(authPatient);
+        user2.getAuthorities().add(authDoctor);
+        user3.getAuthorities().add(authPatient);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);

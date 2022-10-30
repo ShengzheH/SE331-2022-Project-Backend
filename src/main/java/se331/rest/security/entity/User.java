@@ -69,4 +69,7 @@ public class User {
     @OneToOne
     Doctor doctor;
 
+    @ElementCollection
+    List<String> imageUrl;
+
 }
