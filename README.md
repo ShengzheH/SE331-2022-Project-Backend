@@ -8,12 +8,12 @@ Haolong Huai   632115515 (old account:649529444)
 
 ### web application url
 ```
-npm run serve
+44.210.140.37:4000
 ```
 
 ### backend url
 ```
-npm run build
+44.210.140.37:8999
 ```
 
 ### SE331-2022-Project-Frontend Github url
