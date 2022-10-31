@@ -294,43 +294,43 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         c3 = commentRepository.save(Comment.builder()
                 .comment("No drinking")
                 .doctor(dor1)
-                .patient(p2).build());
+                .patient(p3).build());
         c4 = commentRepository.save(Comment.builder()
                 .comment("No bathing")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor2)
+                .patient(p4).build());
         c5 = commentRepository.save(Comment.builder()
                 .comment("Please have more rest.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor2)
+                .patient(p5).build());
         c6 = commentRepository.save(Comment.builder()
                 .comment("Please have light food.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor2)
+                .patient(p6).build());
         c7 = commentRepository.save(Comment.builder()
                 .comment("Please keep in a good mood.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor3)
+                .patient(p7).build());
         c8 = commentRepository.save(Comment.builder()
                 .comment("Please don't stay up late.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor3)
+                .patient(p8).build());
         c9 = commentRepository.save(Comment.builder()
                 .comment("Please take more walks.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor3)
+                .patient(p9).build());
         c10 = commentRepository.save(Comment.builder()
                 .comment("Please eat more fruit.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor4)
+                .patient(p10).build());
         c11 = commentRepository.save(Comment.builder()
                 .comment("Please supplement protein.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor4)
+                .patient(p11).build());
         c12 = commentRepository.save(Comment.builder()
                 .comment("Please drink more water.")
-                .doctor(dor1)
-                .patient(p2).build());
+                .doctor(dor4)
+                .patient(p12).build());
         //四个医生的留言集合。
         List<Comment> commentListP1 = new ArrayList<>();
         List<Comment> commentListP2 = new ArrayList<>();
@@ -389,6 +389,9 @@ public class InitApp implements ApplicationListener<ApplicationReadyEvent> {
         p11.setComments(commentList11);
         p12.setComments(commentList12);
         dor1.setComments(commentListP1);
+        dor2.setComments(commentListP2);
+        dor3.setComments(commentListP3);
+        dor4.setComments(commentListP4);
         dor1.getPatients().add(p1);
         dor1.getPatients().add(p2);
         dor1.getPatients().add(p3);
